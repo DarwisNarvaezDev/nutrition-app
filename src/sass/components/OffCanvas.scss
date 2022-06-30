@@ -1,0 +1,45 @@
+@import '../mixins.scss';
+@import '../variables.scss';
+
+.OffCanvasTitle{
+    p{
+        font-weight: lighter;
+        color: $main-app-green;
+    }
+}
+
+.loginBody {
+    @include flexCentered(column);
+
+    height: 500px;
+    width: 100%;
+    form {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.loginFormHeader {
+    font-family: $main-font-family;
+    font-size: $main-sub-title-size;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.loginFormBody {
+    font-family: $main-font-family;
+
+    input {
+        @include setBorder(bottom);
+        border-radius: 0px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        color: $main-input-text-color;
+        font-size: larger;
+        font-weight: bolder;
+    }
+}

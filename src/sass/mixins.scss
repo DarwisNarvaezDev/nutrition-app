@@ -1,0 +1,26 @@
+@import './variables.scss';
+
+@mixin flexCentered($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin setBorder($side) {
+    @if $side ==top {
+        border-top: $main-border-width solid $main-border-color;
+    }
+
+    @else if $side ==bottom {
+        border-bottom: $main-border-width solid $main-border-color;
+    }
+
+    @else if $side ==left {
+        border-left: $main-border-width solid $main-border-color;
+    }
+
+    @else if $side ==right {
+        border-right: $main-border-width solid $main-border-color;
+    }
+}
