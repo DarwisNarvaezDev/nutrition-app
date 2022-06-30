@@ -1,0 +1,17 @@
+@import '../mixins.scss';
+@import '../variables.scss';
+
+.appHeader {
+    @include flexCentered(column);
+    margin-top: 5rem;
+    p {
+        margin: 2rem;
+        font-size: $main-sub-title-size;
+        font-weight: 200;
+    }
+    h1 {
+        font-size: 80px;
+        font-weight: bolder;
+        color: $main-app-green;
+    }
+}

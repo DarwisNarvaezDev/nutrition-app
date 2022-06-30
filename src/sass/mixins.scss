@@ -24,3 +24,19 @@
         border-right: $main-border-width solid $main-border-color;
     }
 }
+
+@mixin getPoweredFormat {
+    font-weight: 200;
+    color: $main-app-green;
+}
+
+@mixin formatPills {
+    // margin-left: 0.5rem;
+    // margin-right: 0.5rem;
+    // margin-top: 0.5rem;
+    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: small;
+    cursor: pointer;
+}

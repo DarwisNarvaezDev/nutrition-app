@@ -3,8 +3,7 @@
 
 .OffCanvasTitle{
     p{
-        font-weight: lighter;
-        color: $main-app-green;
+        @include getPoweredFormat;
     }
 }
 

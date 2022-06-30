@@ -1,0 +1,43 @@
+@import '../mixins.scss';
+@import '../variables.scss';
+
+.mainAppWrapper {
+    @include flexCentered(row);
+
+    margin: 0 auto;
+    margin-top: 3rem;
+    width: 60%;
+    height: 600px;
+    margin-bottom: 5rem;
+}
+
+.mainAppStatsWrapper{
+    width: 100%;
+    height: 100%;
+
+    // background-color: silver;
+}
+
+.mainAppRecipesWrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.filterHeader {
+    height: 10%;
+    
+    p {
+        margin-left: 1rem;
+        @include getPoweredFormat;
+    }
+}
+
+.filterBody {
+    height: auto;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    span {
+        @include formatPills;
+    }
+}
