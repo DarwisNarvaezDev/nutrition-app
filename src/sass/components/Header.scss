@@ -4,6 +4,7 @@
 .appHeader {
     @include flexCentered(row);
     margin-top: 5rem;
+    margin-bottom: 5rem;
     p {
         margin: 2rem;
         font-size: $main-sub-title-size;

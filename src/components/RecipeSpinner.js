@@ -6,7 +6,7 @@ const RecipeSpinner = () => {
     return (
         <>
             <div className='spinnerWrapper'>
-                <Spinner animation='grow' variant='success' />
+                {/* <Spinner animation='grow' variant='success' /> */}
             </div>
         </>
     )
