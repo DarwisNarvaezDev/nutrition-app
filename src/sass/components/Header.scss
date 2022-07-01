@@ -2,7 +2,7 @@
 @import '../variables.scss';
 
 .appHeader {
-    @include flexCentered(column);
+    @include flexCentered(row);
     margin-top: 5rem;
     p {
         margin: 2rem;

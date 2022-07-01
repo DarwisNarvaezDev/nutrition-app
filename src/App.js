@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import OffCanvasLogin from './components/OffCanvasLogin';
+import './sass/components/Footer.scss'
+import MainApp from './components/MainApp';
 import './sass/components/MainPanel.scss'
-import './sass/components/Header.scss'
-import { Badge, FloatingLabel, Form } from 'react-bootstrap';
+import OffCanvasLogin from './components/OffCanvasLogin';
 
 function App() {
 
@@ -12,44 +12,12 @@ function App() {
     <div className="App">
       {/* The first thing you see when you hit the app */}
       <OffCanvasLogin props={showOffcanvas} />
-      <section className='appHeader'>
-        <h1>Find your recipe!</h1>
-        <p>Select youre desired recipe type, give us the main ingredient and get recipes!</p>
-      </section>
-      <section className='mainAppWrapper'>
-        <div className='mainAppStatsWrapper'>
-          <div className='filterHeader'>
-            <h1>Nutrition App</h1>
-            <p>Powered by FatSecret</p>
-          </div>
-          <div className='filterBody'>
-            <div>
-              <Badge pill bg='secondary'>Main Course</Badge>
-              <Badge pill bg='secondary'>Breakfast</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-              <Badge pill bg='secondary'>Dinner</Badge>
-            </div>
-          </div>
-          <div className='filterFooter'>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Name your favorite ingredient"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-          </div>
+      <MainApp />
+      <footer className='appFooter'>
+        <div className=''>
+          Developed By: <a href='https://github.com/DarwisNarvaezDev'>@DarwisNarvaezDev</a>
         </div>
-        <div className='mainAppRecipesWrapper'></div>
-      </section>
+      </footer>
     </div >
   );
 }
