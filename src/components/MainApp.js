@@ -5,21 +5,24 @@ import RecipeCardSkeleton from './RecipeCardSkeleton';
 
 import '../sass/components/RecipesPanel.scss';
 import RecipeSpinner from './RecipeSpinner';
-import RecipeCard from './RecipeCard';
 import { Reducer } from '../reducer/Reducer';
 import { InitialStates } from '../reducer/InitialStates';
+import useFatSecretFetch from '../hooks/useFatSecretFetch';
+import { CallApiForTypes } from '../helper/PhoneBooth';
 
-const MainApp = () => {
-    
+const MainApp = ({ props }) => {
+
+    const { userState } = props;
+
     // Hooks
     const [state, dispatch] = useReducer(Reducer, InitialStates);
-    const [user, setUser] = useState("");
+    const [userDisplayed, setUserDisplayed] = useState('');
 
     useEffect(() => {
-        console.log(state.userName);
-    }, [])
-    
-    
+        setUserDisplayed(userState);
+    }, [props])
+
+
     return (
         <>
             <HeaderComponent />
@@ -27,7 +30,7 @@ const MainApp = () => {
             <section className='mainAppWrapper'>
                 <FilterComponent />
                 <div className='mainAppRecipesWrapper'>
-                    <div className='userInfo'>Recipes for: {user}</div>
+                    <div className='userInfo'>Recipes for: {userDisplayed}</div>
                     <RecipeCardSkeleton />
                 </div>
             </section>

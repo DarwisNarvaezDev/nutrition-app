@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../sass/components/MainPanel.scss'
 import { Alert, Badge, FloatingLabel, Form } from 'react-bootstrap';
 import SearchAlert from './SearchAlert';
+import { CallApiForTypes } from '../helper/PhoneBooth';
 
 const FilterComponent = () => {
+
+    // hooks
+    const [typeTags, settypeTags] = useState(['Waiting...']);
+
+    const getRecipeTypes = async () => {
+        const recipeTypes = await CallApiForTypes();
+        settypeTags(recipeTypes);
+    };
+
+    useEffect(() => {
+        getRecipeTypes();
+    }, [typeTags])
+    
+
     return (
         <>
             <div className='mainAppStatsWrapper'>
@@ -13,9 +28,13 @@ const FilterComponent = () => {
                 </div>
                 <div className='filterBody'>
                     <div>
-                        <Badge pill bg='secondary'>Main Course</Badge>
-                        <Badge pill bg='info'>Breakfast</Badge>
-                        <Badge pill bg='secondary'>Dinner</Badge>
+                        {
+                            typeTags.map( element => {
+                                return (
+                                    <Badge pill bg='secondary'>{element}</Badge>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <div className='filterFooter'>

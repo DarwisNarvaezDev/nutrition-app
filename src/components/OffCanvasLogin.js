@@ -1,34 +1,37 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react'
 import { Button, FloatingLabel, Form, Offcanvas, OverlayTrigger, Popover } from 'react-bootstrap';
-import GoogleButton from 'react-google-button'
 import '../sass/index.scss'
 import '../sass/components/OffCanvas.scss'
 import { Reducer } from '../reducer/Reducer';
 import { InitialStates } from '../reducer/InitialStates';
 import GoogleLogin from 'react-google-login';
 
-const OffCanvasLogin = ({ props }) => {
-
-    // Hooks
-    const [showLogin, setShowLogin] = useState(props);
-    const [state, dispatch] = useReducer(Reducer, InitialStates);
-    const userRef = useRef("");
+const OffCanvasLogin = ({props}) => {
 
     const popOverMessage = `We don't store your data ;) .`;
+
+    const { setUserState, showOffCanvas } = props;
+
+    // Hooks
+    const [showLogin, setShowLogin] = useState(showOffCanvas);
+    const [state, dispatch] = useReducer(Reducer, InitialStates);
+    const userRef = useRef("");
 
     const handleLoginForm = (e) => {
         e.preventDefault();
         const userName = userRef.current.value != "" ? userRef.current.value : state.userName;
-        // Push to reducer's states
-        dispatch({ type: 'SET_USER', payload: userName });
+        setUserState(userName);
         setShowLogin(false);
     };
 
     const handleGoogleLogin = (userData) => {
         const { name } = userData.profileObj;
-        dispatch({ type: 'SET_USER', payload: name })
+        setUserState(name);
         setShowLogin(false);
     };
+
+    useEffect(()=>{
+    },[]);
 
     return (
         <>

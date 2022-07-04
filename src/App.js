@@ -1,11 +1,26 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import MainApp from './components/MainApp';
 import './sass/components/MainPanel.scss'
 import OffCanvasLogin from './components/OffCanvasLogin';
 import AppFooter from './components/AppFooter';
 import { gapi } from "gapi-script";
+import { InitialStates } from './reducer/InitialStates';
+import { Reducer } from './reducer/Reducer';
 
 function App() {
+
+  // Hooks
+  const [state, dispatch] = useReducer(Reducer, InitialStates);
+  const [showOffCanvas, setShowOffCanvas] = useState(true);
+  const [user, setUser] = useState(state.userName);
+
+  // StateObject
+  const stateObj = {
+    userState: user,
+    setUserState: setUser,
+    showOffCanvas: showOffCanvas,
+    setShowOffCanvas: setShowOffCanvas 
+  }
 
   gapi.load("client:auth2", () => {
     gapi.client.init({
@@ -14,13 +29,11 @@ function App() {
     });
   });
 
-  const [showOffcanvas, setShowOffCanvas] = useState(true);
-
   return (
     <div className="App">
       {/* The first thing you see when you hit the app */}
-      <OffCanvasLogin props={showOffcanvas} />
-      <MainApp />
+      <OffCanvasLogin props={stateObj} />
+      <MainApp props={stateObj} />
       <AppFooter />
     </div >
   );
