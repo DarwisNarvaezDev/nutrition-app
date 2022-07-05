@@ -5,17 +5,15 @@ import RecipeCardSkeleton from './RecipeCardSkeleton';
 
 import '../sass/components/RecipesPanel.scss';
 import RecipeSpinner from './RecipeSpinner';
-import { Reducer } from '../reducer/Reducer';
 import { InitialStates } from '../reducer/InitialStates';
-import useFatSecretFetch from '../hooks/useFatSecretFetch';
-import { CallApiForTypes } from '../helper/PhoneBooth';
+import { NutritionAppReducer } from '../reducer/NutritionAppReducer';
 
 const MainApp = ({ props }) => {
 
     const { userState } = props;
 
     // Hooks
-    const [state, dispatch] = useReducer(Reducer, InitialStates);
+    const [state, dispatch] = useReducer(NutritionAppReducer, InitialStates);
     const [userDisplayed, setUserDisplayed] = useState('');
 
     useEffect(() => {

@@ -1,18 +1,15 @@
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import MainApp from './components/MainApp';
 import './sass/components/MainPanel.scss'
 import OffCanvasLogin from './components/OffCanvasLogin';
 import AppFooter from './components/AppFooter';
 import { gapi } from "gapi-script";
-import { InitialStates } from './reducer/InitialStates';
-import { Reducer } from './reducer/Reducer';
 
 function App() {
 
   // Hooks
-  const [state, dispatch] = useReducer(Reducer, InitialStates);
   const [showOffCanvas, setShowOffCanvas] = useState(true);
-  const [user, setUser] = useState(state.userName);
+  const [user, setUser] = useState('');
 
   // StateObject
   const stateObj = {

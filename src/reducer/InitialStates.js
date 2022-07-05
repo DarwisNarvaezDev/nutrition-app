@@ -1,3 +1,4 @@
 export const InitialStates = {
-    userName: "Guest",
+    searchAlertMessage: 'Welcome!',
+    searchAlertClassName: 'primary'
 };

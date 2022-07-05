@@ -6,11 +6,8 @@ const apiRecipesMapping = process.env.REACT_APP_API_BROKER_RECIPES_SEARCH_MAPPIN
 
 export const CallApiForTypes = async () => {
 
-    console.log("entro aca");
-
     // URL build for types
     const apiUri = `${apiUrl}:${apiPort}/${apiTypesMapping}`;
-    console.log(apiUri);
 
     const data = await fetch(apiUri, {
         method: 'GET',
