@@ -20,3 +20,30 @@ export const CallApiForTypes = async () => {
     return typesToJson;
 
 };
+
+export const CallApiForRecipes = async (fetchObject) => {
+
+    const recipeType = fetchObject.recipeTypeToFetch !== null ? fetchObject.recipeTypeToFetch : "";
+    const searchWord = fetchObject.userInput;
+
+    // URL build for types
+    const apiUri = `${apiUrl}:${apiPort}/${apiRecipesMapping}`;
+
+    console.log("prefetch");
+    const data = await fetch(apiUri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            searchWord: searchWord,
+            type: recipeType
+        })
+    });
+
+    const recipesToJson = await data.json();
+    
+    return recipesToJson;
+
+};

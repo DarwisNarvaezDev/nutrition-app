@@ -1,20 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import '../sass/components/RecipeCard.scss'
 
-const RecipeCard = () => {
+const RecipeCard = ({props}) => {
+
+    // Constants
+    const noImage = 'https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101032.jpg';
+
+    const {
+        recipe_description,
+        recipe_name,
+        recipe_nutrition,
+        recipe_url,
+    } = props;
+
+    const { calories,
+        carbohydrate,
+        fat,
+        protein } = recipe_nutrition;
+
+    const recipeImg = props.recipe_image ? props.recipe_image : noImage;
+
     return (
         <>
             <div className='recipeCard'>
                 <div className='cardHeader'>
                     <div className='recipeTitle'>
-                        <h2><a href='#'>Recipe Name</a></h2>
+                        <h2><a href={recipe_url}>{recipe_name}</a></h2>
                     </div>
                     <div className='headerBlock'>
                         <div className='cardImage'>
                             <img
-                                src='https://m.ftscrt.com/static/recipe/2386b1d5-bd64-4785-8e4a-ffb114ed8a6b.jpg'
-                                alt='recipe'
+                                src={recipeImg}
+                                alt={recipe_name}
                             ></img>
                         </div>
                         <div className='cardStats'>
@@ -28,19 +46,19 @@ const RecipeCard = () => {
                                 <tbody>
                                     <tr>
                                         <td>Calories</td>
-                                        <td>100</td>
+                                        <td>{calories}</td>
                                     </tr>
                                     <tr>
                                         <td>fat</td>
-                                        <td>7.05</td>
+                                        <td>{fat}</td>
                                     </tr>
                                     <tr>
                                         <td>Carbs</td>
-                                        <td>2.05</td>
+                                        <td>{carbohydrate}</td>
                                     </tr>
                                     <tr>
                                         <td>Protein</td>
-                                        <td>6.40</td>
+                                        <td>{protein}</td>
                                     </tr>
                                 </tbody>
                             </Table>
@@ -49,7 +67,7 @@ const RecipeCard = () => {
                 </div>
                 <div className='cardBody'>
                     <div>
-                        Veniam laborum id et amet aliquip aliquip ad ea ullamco. Dolor sint ipsum nulla est aliquip magna in nisi proident minim ullamco velit Lorem aliqua. Excepteur velit quis ea pariatur ex aliquip cupidatat.
+                        {recipe_description}
                     </div>
                 </div>
             </div>

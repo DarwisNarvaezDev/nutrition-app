@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Spinner } from 'react-bootstrap'
 import '../sass/components/Spinner.scss'
 
-const RecipeSpinner = () => {
+const RecipeSpinner = ({props}) => {
+
+    const { isFetchLoading } = props.loading;
+
+    useEffect(() => {
+    }, [props])
+    
     return (
         <>
             <div className='spinnerWrapper'>
-                {/* <Spinner animation='grow' variant='success' /> */}
+                { isFetchLoading && (
+                    <Spinner animation='grow' variant='success' />
+                )}
             </div>
         </>
     )

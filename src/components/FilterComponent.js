@@ -1,12 +1,17 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import '../sass/components/MainPanel.scss'
 import { Badge, FloatingLabel, Form } from 'react-bootstrap';
 import SearchAlert from './SearchAlert';
-import { CallApiForTypes } from '../helper/PhoneBooth';
+import { CallApiForRecipes, CallApiForTypes } from '../helper/PhoneBooth';
 import { NutritionAppReducer } from '../reducer/NutritionAppReducer';
 import { InitialStates } from '../reducer/InitialStates';
 
-const FilterComponent = () => {
+const FilterComponent = ({ props }) => {
+
+    // props
+    const { cards, loading } = props;
+    const { cardsDisplayed, setCardsDisplayed } = cards;
+    const { setIsFetchLoading } = loading;
 
     // Constants
     const classWhenTypeIsNotSelected = 'secondary';
@@ -15,6 +20,7 @@ const FilterComponent = () => {
     // hooks
     const [state, dispatch] = useReducer(NutritionAppReducer, InitialStates);
     const [typeTags, settypeTags] = useState([{ className: 'secondary', type: 'Waiting...' }]);
+    const foodRef = useRef(null);
 
     const [renderNotifyer, setRenderNotifyer] = useState(false);
     const [typeSelected, setTypeSelected] = useState(null);
@@ -59,10 +65,27 @@ const FilterComponent = () => {
 
     };
 
+    const handleRecipes = async () => {
+
+        const userInput = foodRef.current.value;
+        const recipeTypeToFetch = typeSelected !== null ? typeSelected : null;
+        const fetchObject = {
+            recipeTypeToFetch: recipeTypeToFetch,
+            userInput: userInput
+        };
+
+        setIsFetchLoading(true);
+        const data = await CallApiForRecipes(fetchObject);
+        if (data) {
+            setIsFetchLoading(false);
+            setCardsDisplayed(data);
+        }
+    };
+
     useEffect(() => {
+        console.log(props);
         getRecipeTypes();
     }, [])
-
 
     return (
         <>
@@ -83,6 +106,7 @@ const FilterComponent = () => {
                                         onClick={(e) => {
                                             const elementData = { element: element, event: e };
                                             handleType(elementData);
+                                            handleRecipes();
                                         }} >{element.type}</Badge>
                                 )
                             })
@@ -95,7 +119,14 @@ const FilterComponent = () => {
                         label="Name your favorite ingredient"
                         className="mb-3"
                     >
-                        <Form.Control type="text" placeholder="floatingInput" />
+                        <Form.Control
+                            ref={foodRef}
+                            type="text"
+                            placeholder="floatingInput"
+                            onKeyUp={(e) => {
+                                handleRecipes(e);
+                            }}
+                        />
                         {renderNotifyer && <SearchAlert props={notifyerObject} />}
                     </FloatingLabel>
                 </div>
