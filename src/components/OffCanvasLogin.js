@@ -1,9 +1,7 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, FloatingLabel, Form, Offcanvas, OverlayTrigger, Popover } from 'react-bootstrap';
 import '../sass/index.scss'
 import '../sass/components/OffCanvas.scss'
-import { Reducer } from '../reducer/NutritionAppReducer';
-import { InitialStates } from '../reducer/InitialStates';
 import GoogleLogin from 'react-google-login';
 
 const OffCanvasLogin = ({props}) => {

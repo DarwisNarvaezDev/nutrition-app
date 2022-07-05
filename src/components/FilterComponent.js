@@ -1,10 +1,8 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../sass/components/MainPanel.scss'
 import { Badge, FloatingLabel, Form } from 'react-bootstrap';
 import SearchAlert from './SearchAlert';
 import { CallApiForRecipes, CallApiForTypes } from '../helper/PhoneBooth';
-import { NutritionAppReducer } from '../reducer/NutritionAppReducer';
-import { InitialStates } from '../reducer/InitialStates';
 
 const FilterComponent = ({ props }) => {
 
@@ -18,7 +16,6 @@ const FilterComponent = ({ props }) => {
     const classWhenTypeIsSelected = 'info';
 
     // hooks
-    const [state, dispatch] = useReducer(NutritionAppReducer, InitialStates);
     const [typeTags, settypeTags] = useState([{ className: 'secondary', type: 'Waiting...' }]);
     const foodRef = useRef(null);
 

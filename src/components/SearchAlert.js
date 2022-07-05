@@ -1,7 +1,5 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert } from 'react-bootstrap'
-import { InitialStates } from '../reducer/InitialStates';
-import { NutritionAppReducer } from '../reducer/NutritionAppReducer';
 
 const SearchAlert = ({ props }) => {
 

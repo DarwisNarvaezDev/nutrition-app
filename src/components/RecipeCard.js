@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Button, Table } from 'react-bootstrap'
+import React from 'react'
+import { Table } from 'react-bootstrap'
 import '../sass/components/RecipeCard.scss'
 
 const RecipeCard = ({props}) => {

@@ -1,13 +1,11 @@
-import React, { useReducer, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import FilterComponent from './FilterComponent';
 import HeaderComponent from './HeaderComponent';
 import RecipeCardSkeleton from './RecipeCardSkeleton';
-import RecipeSource from '../helper/RecipeSource';
 
 import '../sass/components/RecipesPanel.scss';
 import RecipeSpinner from './RecipeSpinner';
 import RecipeCard from './RecipeCard';
-import { CallApiForRecipes } from '../helper/PhoneBooth';
 
 const MainApp = ({ props }) => {
 
