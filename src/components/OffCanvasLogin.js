@@ -71,7 +71,7 @@ const OffCanvasLogin = ({ props }) => {
                                     </FloatingLabel>
                                 </OverlayTrigger>
                             </div>
-                            { (googleLoginEnabled === 'true' ) && (
+                            { ( googleLoginEnabled === 'true' ) && (
                                 <>
                                     <div className='loginFormHeader'>Or...</div>
                                     <GoogleLogin
