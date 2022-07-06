@@ -4,9 +4,10 @@ import '../sass/index.scss'
 import '../sass/components/OffCanvas.scss'
 import GoogleLogin from 'react-google-login';
 
-const OffCanvasLogin = ({props}) => {
+const OffCanvasLogin = ({ props }) => {
 
     const popOverMessage = `We don't store your data ;) .`;
+    const googleLoginEnabled = process.env.REACT_APP_GOOGLE_SSO_ENABLED !== null || !process.env.REACT_APP_GOOGLE_SSO_ENABLED ? process.env.REACT_APP_GOOGLE_SSO_ENABLED : false;
 
     const { setUserState, showOffCanvas } = props;
 
@@ -16,7 +17,7 @@ const OffCanvasLogin = ({props}) => {
 
     const handleLoginForm = (e) => {
         e.preventDefault();
-        const userName = userRef.current.value != "" ? userRef.current.value : ''
+        const userName = userRef.current.value !== "" ? userRef.current.value : ''
         setUserState(userName);
         setShowLogin(false);
     };
@@ -27,8 +28,9 @@ const OffCanvasLogin = ({props}) => {
         setShowLogin(false);
     };
 
-    useEffect(()=>{
-    },[]);
+    useEffect(() => {
+        console.log(googleLoginEnabled);
+    }, []);
 
     return (
         <>
@@ -69,16 +71,20 @@ const OffCanvasLogin = ({props}) => {
                                     </FloatingLabel>
                                 </OverlayTrigger>
                             </div>
-                            <div className='loginFormHeader'>Or...</div>
-                            <GoogleLogin
-                                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                                buttonText='Log in with Google'
-                                onSuccess={handleGoogleLogin}
-                                onFailure={handleGoogleLogin}
-                                cookiePolicy={'single_host_origin'}
-                                isSignedIn={true}
-                            />
-                            <div className='loginFormFooter'></div>
+                            { (googleLoginEnabled === 'true' ) && (
+                                <>
+                                    <div className='loginFormHeader'>Or...</div>
+                                    <GoogleLogin
+                                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                        buttonText='Log in with Google'
+                                        onSuccess={handleGoogleLogin}
+                                        onFailure={handleGoogleLogin}
+                                        cookiePolicy={'single_host_origin'}
+                                        isSignedIn={true}
+                                    />
+                                    <div className='loginFormFooter'></div>
+                                </>
+                            )}
                         </form>
                     </div>
                 </Offcanvas.Body>
